@@ -68,6 +68,7 @@ h1 {
 
 
 /* ----- script.js ----- */
+// Lista completa de ramos con relaciones
 const ramos = [
   // PRIMER AÑO
   { nombre: "Vivencias de la medicina 1", requisitos: [], desbloquea: ["Vivencias de la medicina 2", "Psicología médica"] },
