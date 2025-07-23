@@ -145,54 +145,6 @@ const ramos = [
   { nombre: "Integrado médico quirúrgico 5.b", requisitos: ["Integrado médico quirúrgico 4.b"], desbloquea: [] },
 ];
 
-const estadoRamos = {};
-const malla = document.getElementById("malla");
-
-function crearMalla() {
-  ramos.forEach(ramo => {
-    const div = document.createElement("div");
-    div.classList.add("ramo");
-    div.textContent = ramo.nombre;
-    div.id = ramo.nombre;
-
-    if (ramo.requisitos.length > 0) {
-      div.classList.add("bloqueado");
-    }
-
-    div.addEventListener("click", () => aprobarRamo(ramo.nombre));
-    malla.appendChild(div);
-    estadoRamos[ramo.nombre] = false;
-  });
-
-  actualizarBloqueos();
-}
-
-function aprobarRamo(nombre) {
-  const ramo = ramos.find(r => r.nombre === nombre);
-  const div = document.getElementById(nombre);
-
-  if (div.classList.contains("bloqueado")) return;
-
-  estadoRamos[nombre] = true;
-  div.classList.add("aprobado");
-  div.classList.remove("bloqueado");
-
-  ramo.desbloquea.forEach(nombreDesbloqueado => {
-    const requisitosDesbloqueado = ramos.find(r => r.nombre === nombreDesbloqueado)?.requisitos || [];
-    if (requisitosDesbloqueado.every(req => estadoRamos[req])) {
-      document.getElementById(nombreDesbloqueado)?.classList.remove("bloqueado");
-    }
-  });
-}
-
-function actualizarBloqueos() {
-  ramos.forEach(ramo => {
-    if (ramo.requisitos.length > 0 && !ramo.requisitos.every(req => estadoRamos[req])) {
-      document.getElementById(ramo.nombre)?.classList.add("bloqueado");
-    }
-  });
-}
-
 // Agrupar por semestre
 const semestres = {};
 ramos.forEach(r => {
