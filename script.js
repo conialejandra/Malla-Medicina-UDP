@@ -193,4 +193,63 @@ function actualizarBloqueos() {
   });
 }
 
-crearMalla();
+// Agrupar por semestre
+const semestres = {};
+ramos.forEach(r => {
+  if (!semestres[r.semestre]) semestres[r.semestre] = [];
+  semestres[r.semestre].push(r);
+});
+
+// Renderizar los ramos
+Object.entries(semestres).forEach(([semestre, ramosSemestre]) => {
+  const contenedor = document.createElement('div');
+  contenedor.className = 'semestre';
+
+  const titulo = document.createElement('h2');
+  titulo.textContent = semestre;
+  contenedor.appendChild(titulo);
+
+  ramosSemestre.forEach(ramo => {
+    const div = document.createElement('div');
+    div.className = 'ramo';
+    div.textContent = ramo.nombre;
+    div.dataset.nombre = ramo.nombre;
+
+    if (ramo.reqs) {
+      div.classList.add('locked');
+    }
+
+    contenedor.appendChild(div);
+  });
+
+  malla.appendChild(contenedor);
+});
+
+// Manejo de clics
+document.querySelectorAll('.ramo').forEach(div => {
+  div.addEventListener('click', () => {
+    if (div.classList.contains('locked')) return;
+
+    if (!div.classList.contains('aprobado')) {
+      div.classList.add('aprobado');
+
+      const nombre = div.dataset.nombre;
+      const abre = ramos.find(r => r.nombre === nombre)?.abre || [];
+
+      abre.forEach(nombreAbierto => {
+        const desbloquear = document.querySelector(`.ramo[data-nombre=\"${nombreAbierto}\"]`);
+        if (desbloquear && desbloquear.classList.contains('locked')) {
+          const requisitos = ramos.find(r => r.nombre === nombreAbierto)?.reqs || [];
+          const cumplidos = requisitos.every(req =>
+            document.querySelector(`.ramo[data-nombre=\"${req}\"]`)?.classList.contains('aprobado')
+          );
+          if (cumplidos) {
+            desbloquear.classList.remove('locked');
+          }
+        }
+      });
+    } else {
+      div.classList.remove('aprobado');
+    }
+  });
+});
