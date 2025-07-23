@@ -1,1 +1,57 @@
 # Malla-Medicina-UDP
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e6f7ff;
+  margin: 20px;
+  color: #003d66;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#malla {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.semestre {
+  background-color: #cceeff;
+  border-radius: 10px;
+  padding: 15px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.semestre h2 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.ramo {
+  background-color: #ffffff;
+  border: 2px solid #66b3ff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.ramo.locked {
+  background-color: #dddddd;
+  border-color: #999999;
+  cursor: not-allowed;
+  color: #777;
+}
+
+.ramo.aprobado {
+  background-color: #b3ffd9;
+  border-color: #33cc99;
+  color: #00664d;
+  text-decoration: line-through;
+}
