@@ -161,9 +161,9 @@ document.querySelectorAll('.ramo').forEach(div => {
       div.classList.add('aprobado');
 
       const nombre = div.dataset.nombre;
-      const abre = ramos.find(r => r.nombre === nombre)?.abre || [];
+      const desbloquea = ramos.find(r => r.nombre === nombre)?.desbloquea || [];
 
-      abre.forEach(nombreAbierto => {
+      desbloquea.forEach(nombreAbierto => {
         const desbloquear = document.querySelector(`.ramo[data-nombre=\"${nombreAbierto}\"]`);
         if (desbloquear && desbloquear.classList.contains('locked')) {
           const requisitos = ramos.find(r => r.nombre === nombreAbierto)?.reqs || [];
