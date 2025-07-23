@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Malla Interactiva Medicina</h1>
+  <h1>Malla Medicina UDP</h1>
   <div class="malla" id="malla"></div>
 
   <script src="script.js"></script>
