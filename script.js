@@ -1,3 +1,73 @@
+/* ----- index.html ----- */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malla Medicina Interactiva</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Malla Interactiva Medicina</h1>
+  <div class="malla" id="malla"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+/* ----- styles.css ----- */
+body {
+  font-family: sans-serif;
+  background-color: #e6f7ff;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #0077b6;
+}
+
+.malla {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.ramo {
+  background-color: #cceeff;
+  border: 2px solid #0077b6;
+  border-radius: 10px;
+  padding: 10px 15px;
+  min-width: 200px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.ramo:hover {
+  background-color: #b3e0ff;
+  transform: scale(1.05);
+}
+
+.ramo.aprobado {
+  background-color: #a8e6cf;
+  border-color: #388e3c;
+  text-decoration: line-through;
+  color: #2e7d32;
+}
+
+.ramo.bloqueado {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* ----- script.js ----- */
 const ramos = [
   // PRIMER AÑO
   { nombre: "Vivencias de la medicina 1", requisitos: [], desbloquea: ["Vivencias de la medicina 2", "Psicología médica"] },
