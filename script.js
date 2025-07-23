@@ -1,4 +1,3 @@
-/* ----- index.html ----- */
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,7 +15,6 @@
 </html>
 
 
-/* ----- styles.css ----- */
 body {
   font-family: sans-serif;
   background-color: #e6f7ff;
@@ -67,7 +65,6 @@ h1 {
 }
 
 
-/* ----- script.js ----- */
 // Lista completa de ramos con relaciones
 const ramos = [
   // PRIMER AÑO
