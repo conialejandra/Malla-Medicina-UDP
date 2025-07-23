@@ -1,3 +1,54 @@
+body {
+  font-family: sans-serif;
+  background-color: #e6f7ff;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #0077b6;
+}
+
+.malla {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.ramo {
+  background-color: #cceeff;
+  border: 2px solid #0077b6;
+  border-radius: 10px;
+  padding: 10px 15px;
+  min-width: 200px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.ramo:hover {
+  background-color: #b3e0ff;
+  transform: scale(1.05);
+}
+
+.ramo.aprobado {
+  background-color: #a8e6cf;
+  border-color: #388e3c;
+  text-decoration: line-through;
+  color: #2e7d32;
+}
+
+.ramo.bloqueado {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+
 // Lista completa de ramos con relaciones
 const ramos = [
   // PRIMER AÑO
