@@ -64,6 +64,22 @@ h1 {
   cursor: not-allowed;
 }
 
+.semestre {
+  border: 1px solid #0077b6;
+  border-radius: 12px;
+  padding: 10px;
+  background-color: #ffffff;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.semestre h2 {
+  color: #023e8a;
+  border-bottom: 2px solid #0077b6;
+  padding-bottom: 5px;
+}
+
 
 // Lista completa de ramos con relaciones
 const ramos = [
@@ -164,11 +180,7 @@ Object.entries(semestres).forEach(([semestre, ramosSemestre]) => {
     div.textContent = ramo.nombre;
     div.dataset.nombre = ramo.nombre;
 
-    const requisitos = ramo.requisitos || [];
-const cumplidos = requisitos.every(req =>
-  document.querySelector(`.ramo[data-nombre="${req}"]`)?.classList.contains('aprobado')
-);
-if (requisitos.length > 0 && !cumplidos) {
+    if ((ramo.requisitos || []).length > 0) {
   div.classList.add('bloqueado');
 }
 
@@ -181,7 +193,7 @@ if (requisitos.length > 0 && !cumplidos) {
 // Manejo de clics
 document.querySelectorAll('.ramo').forEach(div => {
   div.addEventListener('click', () => {
-    if (div.classList.contains('locked')) return;
+    if (div.classList.contains('bloqueado')) return;
 
     if (!div.classList.contains('aprobado')) {
       div.classList.add('aprobado');
@@ -205,4 +217,18 @@ document.querySelectorAll('.ramo').forEach(div => {
       div.classList.remove('aprobado');
     }
   });
+});
+
+// Al aprobar, revisar si otros ramos ahora pueden desbloquearse
+ramos.forEach(ramoObj => {
+  const divTarget = document.querySelector(`.ramo[data-nombre="${ramoObj.nombre}"]`);
+  if (divTarget && divTarget.classList.contains('bloqueado')) {
+    const requisitos = ramoObj.requisitos || [];
+    const cumplidos = requisitos.every(req =>
+      document.querySelector(`.ramo[data-nombre="${req}"]`)?.classList.contains('aprobado')
+    );
+    if (cumplidos) {
+      divTarget.classList.remove('bloqueado');
+    }
+  }
 });
