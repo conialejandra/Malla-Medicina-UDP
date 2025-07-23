@@ -1,46 +1,70 @@
-<style>
-  #malla {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+/* ----- index.html ----- */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malla Medicina UDP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Malla Medicina UDP</h1>
+  <div class="malla" id="malla"></div>
 
-  .semestre {
-    flex: 1 1 300px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #f7f7f7;
-  }
+  <script src="script.js"></script>
+</body>
+</html>
 
-  .semestre h2 {
-    text-align: center;
-  }
 
-  .ramo {
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #999;
-    border-radius: 4px;
-    background-color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+/* ----- styles.css ----- */
+body {
+  font-family: sans-serif;
+  background-color: #e6f7ff;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
 
-  .ramo.locked {
-    background-color: #eee;
-    color: #999;
-    cursor: not-allowed;
-  }
+h1 {
+  color: #0077b6;
+}
 
-  .ramo.aprobado {
-    background-color: #c8f7c5;
-  }
+.malla {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-  .ramo:hover:not(.locked):not(.aprobado) {
-    background-color: #e0f7fa;
-  }
-</style>
+.ramo {
+  background-color: #cceeff;
+  border: 2px solid #0077b6;
+  border-radius: 10px;
+  padding: 10px 15px;
+  min-width: 200px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.ramo:hover {
+  background-color: #b3e0ff;
+  transform: scale(1.05);
+}
+
+.ramo.aprobado {
+  background-color: #a8e6cf;
+  border-color: #388e3c;
+  text-decoration: line-through;
+  color: #2e7d32;
+}
+
+.ramo.bloqueado {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 
 // Lista completa de ramos con relaciones
