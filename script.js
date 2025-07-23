@@ -1,52 +1,46 @@
-body {
-  font-family: sans-serif;
-  background-color: #e6f7ff;
-  color: #333;
-  text-align: center;
-  margin: 0;
-  padding: 20px;
-}
+<style>
+  #malla {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 
-h1 {
-  color: #0077b6;
-}
+  .semestre {
+    flex: 1 1 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+  }
 
-.malla {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  max-width: 1400px;
-  margin: 0 auto;
-}
+  .semestre h2 {
+    text-align: center;
+  }
 
-.ramo {
-  background-color: #cceeff;
-  border: 2px solid #0077b6;
-  border-radius: 10px;
-  padding: 10px 15px;
-  min-width: 200px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
+  .ramo {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #999;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
 
-.ramo:hover {
-  background-color: #b3e0ff;
-  transform: scale(1.05);
-}
+  .ramo.locked {
+    background-color: #eee;
+    color: #999;
+    cursor: not-allowed;
+  }
 
-.ramo.aprobado {
-  background-color: #a8e6cf;
-  border-color: #388e3c;
-  text-decoration: line-through;
-  color: #2e7d32;
-}
+  .ramo.aprobado {
+    background-color: #c8f7c5;
+  }
 
-.ramo.bloqueado {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
+  .ramo:hover:not(.locked):not(.aprobado) {
+    background-color: #e0f7fa;
+  }
+</style>
 
 
 // Lista completa de ramos con relaciones
